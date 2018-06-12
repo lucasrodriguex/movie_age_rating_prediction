@@ -1,26 +1,23 @@
 package agerate.mainClasses;
 
 import agerate.classes.Film;
-import agerate.classes.ReadFolder;
-import jdk.internal.util.xml.impl.Input;
 
 import java.io.*;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+
 public class GroupTxt {
 
 	public static void main(String[] args) {
 		final List<Film> filteredFilms = getMatchedFilms();
-		final List<File> fileNames = getResourceFolderFiles("/subtitles");
 
 		filteredFilms.forEach(film -> {
 			try {
@@ -29,17 +26,21 @@ public class GroupTxt {
 				e.printStackTrace();
 			}
 		});
-
-		System.out.println(filteredFilms);
-
 	}
 
 	private static void copyFileToFolder(final Film film) throws IOException {
-		final String sourceFile = film.getName().toLowerCase() + ".txt";
-		final Path inputPath = Paths.get(GroupTxt.class.getClassLoader().getResource(sourceFile).getPath());
-		final Path destination = Paths.get("/tmp/"+ film.getAge() + File.separator + sourceFile);
+		final String sourceFile = "src/subtitles/" + film.getName() + ".txt";
+		final Path inputPath = Paths.get(new File(sourceFile).getPath());
+
+		//cria as pastas
+		final String destinationFolderPath = "resources/"+ film.getAge();
+		File destinationFolder = new File(destinationFolderPath);
+		destinationFolder.mkdirs();
+
+		final Path destination = Paths.get(destinationFolderPath + File.separator + film.getName() + ".txt");
 		try {
-			Files.copy(inputPath, destination, StandardCopyOption.REPLACE_EXISTING);
+			Files.copy(inputPath, destination, REPLACE_EXISTING);
+			System.out.println("filme copiado");
 		} catch (IOException e) {
 			throw e;
 		}
@@ -66,7 +67,8 @@ public class GroupTxt {
 		//cria uma lista de objetos Film a partir do arquivo lido
 		filmes.forEach(filme -> {
 			String[] dados = filme.split("@");
-			filmsWithAge.add(new Film(dados[0], dados[1]));
+			final String filmName = dados[0].toLowerCase().replaceAll("[^\\p{Alpha}\\p{Digit}]+"," ").trim();
+			filmsWithAge.add(new Film(filmName, dados[1].toLowerCase()));
 		});
 
 		//pega a lista de arquivos
