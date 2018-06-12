@@ -5,6 +5,15 @@ public class Film {
 	private String name;
 	private String age;
 
+	public Film (String name, String age) {
+		this.name = name;
+		this.age = age;
+	}
+
+	public Film(){
+
+	}
+
 	public String getName() {
 		return name;
 	}

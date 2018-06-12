@@ -35,7 +35,7 @@ public class Compare {
 //					Scanner entireFileText = new Scanner(new File(rs.toString()));
 //					String text = "Titulo: " + movieAge.get(i).getName() + "\n Classificacao Indicativa: " + movieAge.get(i).getAge() + "\n";
 //					FileOutputStream fs = new FileOutputStream(folder2 + "/" + movieSubtitles.get(j).getName().toLowerCase() + ".txt");
-					
+//
 //					try {
 //						fs.write((text + entireFileText).getBytes());
 //						entireFileText.close();

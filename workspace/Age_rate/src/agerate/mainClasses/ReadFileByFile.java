@@ -64,7 +64,7 @@ public class ReadFileByFile {
 			}
 			
 			System.out.println(count);
-			textoQueSeraEscrito = textoQueSeraEscrito + quebraLinha + title+" idade:"+age;
+			textoQueSeraEscrito = textoQueSeraEscrito + quebraLinha + title+"@"+age;
 //			System.out.println(textoQueSeraEscrito);
 //			movie.setName(title);
 //			movie.setAge(age);
