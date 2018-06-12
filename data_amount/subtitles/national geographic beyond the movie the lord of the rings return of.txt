@@ -1,0 +1,6 @@
+141 path=result/pt_br/Documentary/2003/8266_85664_114762_national_geographic_beyond_the_movie_-_the_lord_of_the_rings_return_of_the_king.txt
+20 ctime=1520616330
+20 atime=1520616359
+23 SCHILY.dev=16777220
+23 SCHILY.ino=22418702
+18 SCHILY.nlink=1
