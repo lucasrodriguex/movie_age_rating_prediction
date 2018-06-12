@@ -23,16 +23,19 @@ public class GroupTxt {
 		final List<File> fileNames = getResourceFolderFiles("/subtitles");
 
 		filteredFilms.forEach(film -> {
-			//todo copiar arquivos para a pasta correta
+			try {
+				copyFileToFolder(film);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		});
 
 		System.out.println(filteredFilms);
 
 	}
 
-	private static void copyFileToFolder(final Film film, final String sourceFile)
-			throws IOException {
-
+	private static void copyFileToFolder(final Film film) throws IOException {
+		final String sourceFile = film.getName().toLowerCase() + ".txt";
 		final Path inputPath = Paths.get(GroupTxt.class.getClassLoader().getResource(sourceFile).getPath());
 		final Path destination = Paths.get("/tmp/"+ film.getAge() + File.separator + sourceFile);
 		try {
@@ -74,7 +77,7 @@ public class GroupTxt {
 		//compara a lista de filmes com a lista de arquivos e gera uma lista com os matches
 		return filmsWithAge.stream().filter(
 				film -> fileNames.stream()
-				.anyMatch(name -> film.getName().equalsIgnoreCase(name) || name.contains(film.getName())))
+				.anyMatch(name -> film.getName().equalsIgnoreCase(name)))
 				.collect(Collectors.toList());
 	}
 }
