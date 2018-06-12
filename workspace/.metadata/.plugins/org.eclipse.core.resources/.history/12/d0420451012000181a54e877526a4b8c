@@ -1,0 +1,33 @@
+package agerate.mainClasses;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class ReadFileByFile {
+	public static void main(String[] args) throws FileNotFoundException {
+
+		final File folder = new File("C:/Users/Rian.Rian/Documents/GitHub/rtavares/filme/teste");
+
+		File[] files = folder.listFiles();
+		for (File item : files) {
+			System.out.println(item);
+			String entireFileText = new Scanner(new File(item.toString()))
+					.useDelimiter("\\A").next();
+			int startIndex = entireFileText.indexOf("<h1 style='margin-bottom: 5px'>");
+			System.out.println("startIndex: " + startIndex);
+			int endIndex = entireFileText.indexOf(" ", startIndex);
+			System.out.println("endIndex: " + endIndex);
+//			if (endIndex == -1) {
+			    endIndex = entireFileText.length();
+			}
+			
+			String title = entireFileText.substring(startIndex, endIndex);
+			System.out.println("Title: " + title);
+		}
+		
+//		<h1 style="margin-bottom: 5px">
+		// System.out.println(entireFileText);
+		
+	}
+}

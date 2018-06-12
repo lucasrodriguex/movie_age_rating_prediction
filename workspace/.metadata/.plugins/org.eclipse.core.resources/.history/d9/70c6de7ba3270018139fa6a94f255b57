@@ -1,0 +1,9 @@
+package agerate.resultClasses;
+
+public class ChangeFilesNames {
+
+	public ChangeFilesNames() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

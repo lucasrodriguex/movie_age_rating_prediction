@@ -1,0 +1,13 @@
+package agerate.mainClasses;
+
+import java.util.Scanner;
+
+public class ReadFileByFile {
+	public static void main(String[] args) throws FileNotFoundException {
+		 
+		  String entireFileText = new Scanner(new File("readme.txt"))
+		    .useDelimiter("\\A").next();
+		 
+		  System.out.println(entireFileText);
+		 }
+}

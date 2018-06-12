@@ -1,0 +1,22 @@
+package agerate.resultClasses;
+
+import java.io.File;
+import agerate.classes.ReadFolderToChange;
+
+public class ChangeFilesNames {
+	public static void main(String[] args) {
+		
+		String toFind = "_";
+		String delete = "_";
+
+//		final File folder = new File("C:/Users/Rian.Rian/Documents/GitHub/rtavares/data_amount/result/pt_br");
+		final File folder = new File("C:\Users\RianTavaresBrumAlves\Documents\Projetos\rtavares\data_amount\result/pt_br\");
+		ReadFolderToChange.listFilesForFolder(folder);
+		
+//			File html = new File(item + ".html");
+//			// System.out.println(html);
+//			item.renameTo(html);
+//		}
+	}
+
+}

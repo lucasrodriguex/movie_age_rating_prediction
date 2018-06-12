@@ -1,0 +1,9 @@
+package agerate.classes;
+
+public class ReadFolderToChange {
+
+	public ReadFolderToChange() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

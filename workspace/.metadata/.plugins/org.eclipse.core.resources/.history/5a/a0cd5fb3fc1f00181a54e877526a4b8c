@@ -1,0 +1,14 @@
+package agerate.mainClasses;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class ReadFileByFile {
+	public static void main(String[] args) throws FileNotFoundException {
+		 
+		  String entireFileText = new Scanner(new File("C:/Users/Rian.Rian/Documents/GitHub/rtavares/filme/[rec].html")).useDelimiter("\\A").next();
+		 
+		  System.out.println(entireFileText.toString());
+		 }
+}

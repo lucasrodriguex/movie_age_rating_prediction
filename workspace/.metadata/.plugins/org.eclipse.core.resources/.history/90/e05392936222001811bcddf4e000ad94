@@ -1,0 +1,68 @@
+package agerate.mainClasses;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import agerate.classes.Film;
+
+public class ReadFileByFile {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		/* Creating variables */
+		ArrayList <Film> moviesObjects = new ArrayList<Film>();
+		Film movie = new Film();
+		String data = "";
+		String title = "";
+		String age = "";
+		int flag = 0;
+		String toFindName = "<h1 style=\"margin-bottom: 5px\">";
+		String daleteName = "<h1 style=\"margin-bottom: 5px\">";
+		String toFindAge = "<li class=\"meu_both\"><i class=\"icon ico-family\"></i><div class=\"serie_separacao\"><strong>Classificação:</strong></div>";
+		String deleteAge = "<li class=\"meu_both\"><i class=\"icon ico-family\"></i><div class=\"serie_separacao\"><strong>Classificação:</strong></div>";
+
+		// String directory = "C:/Users/Rian.Rian/Documents/GitHub/rtavares/filme";
+		String directory = "C:/Users/RianTavaresBrumAlves/Documents/Projetos/rtavares/filme/teste";
+
+		/* Extracting information */
+		final File folder = new File(directory);
+
+		File[] files = folder.listFiles();
+		for (File item : files) {
+			// System.out.println(item);
+			Scanner entireFileText = new Scanner(new File(item.toString()));
+			// .useDelimiter("\\A").next();
+			while (entireFileText.hasNextLine()) {
+				flag = flag + 1;
+				data = entireFileText.nextLine();
+				// System.out.println(flag +"..." + data);
+				if (data.contains(toFindName)) { // System.out.println("aqui");
+					title = data.substring(0, data.indexOf("</h1>"));
+					title = title.replace(daleteName, "").trim();
+				}
+
+				if (data.contains(toFindAge)) {
+					// System.out.println("aqui");
+					age = data.substring(0, data.indexOf("</li>"));
+					age = age.replace(deleteAge, "").trim();
+				}
+			}
+			
+			movie.setName(title);
+			movie.setAge(age);
+			moviesObjects.add(movie);
+			
+//			System.out.println("Title:" + title);
+//			System.out.println("Age:" + age);
+//			System.out.println("\n");
+		}
+		
+		for(int i = 0; i < moviesObjects.size(); i++) {
+			System.out.println(moviesObjects.get(i).getName());
+		}
+		// <h1 style="margin-bottom: 5px">
+		// System.out.println(entireFileText);
+
+	}
+}

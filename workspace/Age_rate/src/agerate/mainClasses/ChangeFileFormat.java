@@ -1,0 +1,23 @@
+package agerate.mainClasses;
+
+import java.io.File;
+import java.util.Arrays;
+
+import agerate.classes.*;
+
+public class ChangeFileFormat {
+
+	public static void main(String[] args) {
+		/* ALREADY RENAMED FILES */
+		// File("C:/Users/Rian.Rian/Documents/GitHub/rtavares/filme/[1]filmessoltos");
+
+		final File folder = new File("C:/Users/Rian.Rian/Documents/GitHub/rtavares/filme/");
+
+		File[] files = folder.listFiles();
+		for (File item : files) {
+			File html = new File(item + ".html");
+			// System.out.println(html);
+			item.renameTo(html);
+		}
+	}
+}
